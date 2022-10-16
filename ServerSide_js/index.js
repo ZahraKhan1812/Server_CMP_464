@@ -11,11 +11,34 @@ const path = require('path')
 
 app.use(express.static('public'))
 //app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.json());
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.text());
+app.use(express.urlencoded({extended: false}));
+app.use(express.text());
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public',  'index.html'))
   })
+
+
+app.post('/comment', (req, res) => {
+    console.log(req.body)
+    
+    //addToDatabase(req.body.comment)
+    res.json(req.body)
+})
+    // if(req.body.firstName == "Zahra"){
+    //     console.log("Welcome to Zahra page")
+    // }
+    
+    // addToDatabase(req.body.comment)
+
+    // res.json(req.body)
+   // res.send('Got the data')
+
+
 
   app.get('/Zahra', (req, res) => {
     res.sendFile(path.join(__dirname, './public',  'Zahra.html'))
@@ -46,16 +69,3 @@ app.listen(port, () => {
 app.post('/', (req, res) => {
     res.send('Recieved a post request')
   })
-
-app.post('/comment', (req, res) => {
-    res.send('Got the data')
-})
-
-
-//   app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-//   })
-
-//   app.post('/', (req, res) => {
-//     res.send('Recieved a post')
-//   })

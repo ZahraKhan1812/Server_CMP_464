@@ -8,16 +8,17 @@ const path = require('path')
 
 app.use(express.static('public'))
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 var bodyParser = require('body-parser');
-app.use(express.urlencoded({extended: false}));
+
 app.use(bodyParser.text());
 app.use(express.text());
 
 
 app.post('/comment', (req, res) => {
     console.log(req.body)  
-    res.send(req.body)
+    res.json(req.body)
 })
 
 // app.post('/comment', (req, res) => {

@@ -10,10 +10,10 @@ app.use(express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 
-app.use(bodyParser.text());
-app.use(express.text());
+// app.use(bodyParser.text());
+// app.use(express.text());
 
 
 app.post('/comment', (req, res) => {
